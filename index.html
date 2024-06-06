@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>qr code generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #img {
+      margin-top: 1rem;
+    }
+
+    #inp {
+      font-size: 1.2rem;
+      padding: 0.1rem 0.5rem;
+      border 2px solid black;
+      outline: none;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <p>Enter some text :</p>
+    <input type="text" id="inp">
+    <div class="imgBox">
+      <img src="" id="img">
+    </div>
+
+  </div>
+
+  <script>
+    const inp = document.querySelector("#inp");
+    let imgBox = document.querySelector(".imgBox");
+    let img = document.querySelector("#img");
+
+    function makeQr() {
+      if (inp.value == "") {
+        return;
+      } else {
+        let url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inp.value}`;
+        img.src = url;
+      }
+    }
+
+    inp.addEventListener("input", () => makeQr())
+  </script>
+</body>
+
+</html>
